@@ -28,7 +28,7 @@ export default () => {
         async (req: Request, res: Response, next: NextFunction) => {
 
             try {
-                const configuration = await PaymentPlanService.update(
+                const configuration = await PaymentPlanService.updateByProductId(
                     req.params.id,
                     req.body
                 );
