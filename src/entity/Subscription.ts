@@ -13,7 +13,7 @@ const SubscriptionSchema = new Schema({
         ref: "PaymentPlan",
         required: true,
     },
-    billingId: String,
+    paymentRef: String,
     account: {
         type: Schema.Types.ObjectId,
         ref: "Account",

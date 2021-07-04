@@ -27,10 +27,23 @@ export class PaymentServiceImpl implements PaymentService {
 
         try {
 
-            const productPlan = await this.paymentPlanService.getByProductID(productId);
+            const { monthlyCost, flatCost } = await this.paymentPlanService.getByProductID(productId);
             // get amount from product plan
 
-            const payment = await stripe.paymentIntents.create({
+            switch (plan) {
+
+                case "month":
+                    if (amount != monthlyCost) { throw new AppError("Invalid Amount", 400) };
+                    break;
+
+                case "single":
+                    if (amount != flatCost) { throw new AppError("Invalid Amount", 400) };
+                    break;
+            }
+
+
+
+            const { id: paymentRef } = await stripe.paymentIntents.create({
                 amount,
                 currency: "USD",
                 description,
@@ -39,7 +52,7 @@ export class PaymentServiceImpl implements PaymentService {
             })
 
             await this.invoiceService.create({ account: userId, product: productId, description, amount });
-            // await this.subscriptionService.create({ account: userId, product: productId,billingId:payment.billingId, active: true });
+            await this.subscriptionService.create({ account: userId, product: productId, paymentRef, active: true });
 
             return {
                 message: "Payment successful",
