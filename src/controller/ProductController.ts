@@ -27,12 +27,12 @@ export default () => {
   router.put(
     "/:id",
     async (req: Request, res: Response, next: NextFunction) => {
-      const { name, description, recurring, url } = req.body;
+      const { name, description, recurring, url, paid } = req.body;
 
       try {
         const configuration = await ProductService.update(
           req.params.id,
-          { name, description, recurring, url }
+          { name, description, recurring, url, paid }
         );
         res.send(configuration);
       } catch (error) {

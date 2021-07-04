@@ -8,7 +8,8 @@ const TYPES = {
   ProductService: Symbol("Product"),
   PaymentPlanService: Symbol("PaymentPlan"),
   SubscriptionService: Symbol("Subscription"),
-  PaymentService: Symbol("Payment")
+  PaymentService: Symbol("Payment"),
+  InvoiceService: Symbol("Invoice")
 };
 
 export default TYPES;

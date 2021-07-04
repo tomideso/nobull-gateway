@@ -10,6 +10,7 @@ import {
 } from "@/services/PaymentPlanService";
 import { ProductServiceImpl, ProductService } from "@/services/ProductService";
 import { SubscriptionServiceImpl, SubscriptionService } from "@/services/SubscriptionService";
+import { InvoiceServiceImpl, InvoiceService } from "@/services/InvoiceService";
 import {
   PaymentServiceImpl,
   PaymentService
@@ -27,5 +28,6 @@ container
   .bind<PaymentService>(TYPES.PaymentService)
   .to(PaymentServiceImpl);
 container.bind<ProductService>(TYPES.ProductService).to(ProductServiceImpl);
+container.bind<InvoiceService>(TYPES.InvoiceService).to(InvoiceServiceImpl);
 
 export default container;

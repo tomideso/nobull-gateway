@@ -6,11 +6,11 @@ import SubscriptionSchema from "@/entity/Subscription";
 export class SubscriptionServiceImpl implements SubscriptionService {
 
 
-    public async create({ product, account, active }) {
+    public async create({ product, account, paymentPlan, active }) {
 
         try {
             const configuration = new SubscriptionSchema();
-            Object.assign(configuration, { product, account, active });
+            Object.assign(configuration, { product, account, paymentPlan, active });
 
             return await configuration.save();
         } catch (error) {

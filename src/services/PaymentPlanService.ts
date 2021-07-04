@@ -1,10 +1,19 @@
 import { injectable, inject } from "inversify";
 import { AppError } from "@/ErrorHandler/AppError";
 import PaymentPlanSchema from "@/entity/PaymentPlan";
+import TYPES from "@/config/types";
+import { InvoiceService } from "./InvoiceService";
 
 @injectable()
 export class PaymentPlanServiceImpl implements PaymentPlanService {
 
+  private invoiceService: InvoiceService;
+
+  constructor(
+    @inject(TYPES.InvoiceService) invoiceService: InvoiceService,
+  ) {
+    this.invoiceService = invoiceService;
+  }
 
   public async create({ trialCost, trialPeriod, monthlyCost, yearlyCost, flatCost, product }) {
 
@@ -70,8 +79,8 @@ export class PaymentPlanServiceImpl implements PaymentPlanService {
 
   public async getByProductID(id) {
     try {
-      const config = await PaymentPlanSchema.find({ product: id }).lean();
-      return await config;
+      const plan = await PaymentPlanSchema.find({ product: id }).lean();
+      return await plan;
     } catch (error) {
       throw new AppError("Error finding Payment Plan", 400);
     }

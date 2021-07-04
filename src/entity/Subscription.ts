@@ -8,6 +8,12 @@ const SubscriptionSchema = new Schema({
         ref: "Product",
         required: false,
     },
+    paymentPlan: {
+        type: Schema.Types.ObjectId,
+        ref: "PaymentPlan",
+        required: true,
+    },
+    billingId: String,
     account: {
         type: Schema.Types.ObjectId,
         ref: "Account",

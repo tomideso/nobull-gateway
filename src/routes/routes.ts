@@ -9,6 +9,7 @@ import PaymentController from "@/controller/PaymentController";
 import PaymentPlanController from "@/controller/PaymentPlanController";
 import ProductController from "@/controller/ProductController";
 import SubscriptionController from "@/controller/SubscriptionController";
+import InvoiceController from "@/controller/InvoiceController";
 
 const publicRoutes = [
   {
@@ -39,7 +40,10 @@ const publicRoutes = [
     route: "/product",
     controller: ProductController,
   },
-
+  {
+    route: "/invoice",
+    controller: InvoiceController,
+  },
 ];
 
 const privateRoutes = [
