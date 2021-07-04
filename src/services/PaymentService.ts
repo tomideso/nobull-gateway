@@ -6,15 +6,15 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
 export class PaymentServiceImpl implements PaymentService {
 
 
-    public async pay({ userId, productId, plan, amount, id }) {
+    public async pay({ userId, productId, plan, description, amount, paymentMethod: payment_method }) {
 
         try {
 
             const payment = await stripe.paymentIntents.create({
                 amount,
                 currency: "USD",
-                description: "Spatula company",
-                payment_method: id,
+                description,
+                payment_method,
                 confirm: true
             })
             //save to DB

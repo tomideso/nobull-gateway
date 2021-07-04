@@ -10,6 +10,6 @@ const ProductSchema = new Schema({
     name: String,
     url: String,
     logo: String
-});
+}, { timestamps: true });
 
 export default mongoose.model("Product", ProductSchema);
