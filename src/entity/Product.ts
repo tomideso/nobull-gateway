@@ -6,6 +6,7 @@ const ProductSchema = new Schema({
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     recurring: { type: Boolean, default: false },
+    paid: { type: Boolean, default: false },
     description: String,
     name: String,
     url: String,
