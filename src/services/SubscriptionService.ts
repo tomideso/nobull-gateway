@@ -1,6 +1,6 @@
 import { injectable, inject } from "inversify";
 import { AppError } from "@/ErrorHandler/AppError";
-import SubscriptionSchema from "@/entity/subscription";
+import SubscriptionSchema from "@/entity/Subscription";
 
 @injectable()
 export class SubscriptionServiceImpl implements SubscriptionService {
