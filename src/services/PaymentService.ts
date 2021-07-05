@@ -5,7 +5,7 @@ import TYPES from "@/config/types";
 import { SubscriptionService } from "./SubscriptionService";
 import { PaymentPlanService } from "./PaymentPlanService";
 import Account from "@/entity/Account";
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
+const stripe = require("stripe")(process.env.STRIPE_SECRET)
 
 @injectable()
 export class PaymentServiceImpl implements PaymentService {
