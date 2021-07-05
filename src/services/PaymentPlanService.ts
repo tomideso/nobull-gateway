@@ -79,8 +79,8 @@ export class PaymentPlanServiceImpl implements PaymentPlanService {
 
   public async getByProductID(id) {
     try {
-      const plan = await PaymentPlanSchema.find({ product: id }).lean();
-      return await plan;
+      const plan = await PaymentPlanSchema.findOne({ product: id }).lean();
+      return plan;
     } catch (error) {
       throw new AppError("Error finding Payment Plan", 400);
     }
