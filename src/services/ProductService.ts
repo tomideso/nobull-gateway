@@ -30,6 +30,16 @@ export class ProductServiceImpl implements ProductService {
         }
     }
 
+    public async delete(_id) {
+        try {
+            const saved = await ProductSchema.remove({ _id });
+
+            return saved;
+        } catch (error) {
+            throw new AppError(error, 400);
+        }
+    }
+
 
     public async getByID(id) {
         try {
@@ -53,6 +63,7 @@ export class ProductServiceImpl implements ProductService {
 
 export interface ProductService {
     create(config): Promise<any>;
+    delete(id): Promise<any>;
     update(id, config): Promise<any>;
     getByID(id): Promise<any>;
     getAll(): Promise<any>;

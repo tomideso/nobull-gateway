@@ -5,6 +5,6 @@ export const JWT_CONFIG = {
 
 export const DB_CONFIG = {
   port: process.env.PORT || 8000,
-  mongoUrl: "mongodb://localhost:27017/nb-gateway",
+  mongoUrl: "mongodb://localhost:27017/nb-gateway-1",
   bodyLimit: "40kb",
 };

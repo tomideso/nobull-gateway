@@ -42,6 +42,22 @@ export default () => {
     }
   );
 
+  router.delete(
+    "/:id",
+    async (req: Request, res: Response, next: NextFunction) => {
+
+      try {
+        const configuration = await ProductService.delete(
+          req.params.id,
+        );
+        res.send(configuration);
+      } catch (error) {
+        const err = new AppError("Error deleting product", 400);
+        return next(err);
+      }
+    }
+  );
+
   router.get("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
       const products = await ProductService.getAll();
