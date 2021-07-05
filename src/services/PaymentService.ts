@@ -67,6 +67,7 @@ export class PaymentServiceImpl implements PaymentService {
             //save to DB
 
         } catch (error) {
+            console.log(error)
             throw new AppError("Payment Failed", 400);
         }
     }
