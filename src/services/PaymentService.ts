@@ -28,25 +28,25 @@ export class PaymentServiceImpl implements PaymentService {
 
         try {
 
-            // const user = await Account.findOne({ userId });
+            // const user = await Account.findOne({ userId }); 
 
-            const { monthlyCost, flatCost } = await this.paymentPlanService.getByProductID(productId);
+            // const { monthlyCost, flatCost } = await this.paymentPlanService.getByProductID(productId);
             // get amount from product plan
 
-            switch (plan) {
+            // switch (plan) {
 
-                case "month":
-                    if (amount != monthlyCost) { throw new AppError("Invalid Amount", 400) };
-                    break;
+            //     case "month":
+            //         if (amount != monthlyCost) { throw new AppError("Invalid Amount", 400) };
+            //         break;
 
-                case "single":
-                    if (amount != flatCost) { throw new AppError("Invalid Amount", 400) };
-                    break;
-            }
+            //     case "single":
+            //         if (amount != flatCost) { throw new AppError("Invalid Amount", 400) };
+            //         break;
+            // }
 
 
 
-            const { id: paymentRef } = await stripe.paymentIntents.create({
+            const { id: paymentRef, ...result } = await stripe.paymentIntents.create({
                 amount,
                 currency: "USD",
                 description,
@@ -62,7 +62,8 @@ export class PaymentServiceImpl implements PaymentService {
 
             return {
                 message: "Payment successful",
-                success: true
+                success: true,
+                result
             }
             //save to DB
 
