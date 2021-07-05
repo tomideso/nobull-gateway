@@ -59,7 +59,7 @@ export default () => {
 
     router.get("/product/:id", async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const plans = await PaymentPlanService.getByID(req.params.id);
+            const plans = await PaymentPlanService.getByProductID(req.params.id);
             res.send(plans);
         } catch (error) {
             console.log(error);
