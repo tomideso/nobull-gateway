@@ -59,7 +59,7 @@ mongoose.connect(DB_CONFIG.mongoUrl, { useNewUrlParser: true }, (error) => {
       store: new RedisStore({
         client: Redis(),
       }),
-      secret: process.env.SESSION_SECRET || "s(s:JDI:sddn[p[t",
+      secret: process.env.SECRET_KEY || "s(s:JDI:sddn[p[t",
       saveUninitialized: true,
       resave: false,
     })

@@ -10,10 +10,11 @@ import PaymentPlanController from "@/controller/PaymentPlanController";
 import ProductController from "@/controller/ProductController";
 import SubscriptionController from "@/controller/SubscriptionController";
 import InvoiceController from "@/controller/InvoiceController";
+import { checkUser } from "@/middleware/checkUser";
 
 const publicRoutes = [
   {
-    route: "/account",
+    route: "/auth",
     controller: AuthController,
   },
   {
@@ -67,7 +68,7 @@ export const registerRoutes = (app: Application): void => {
   privateRoutes.map(({ route, controller }) => {
     routesV1.use(
       route,
-      passport.authenticate("jwt", { session: false }),
+      checkUser,
       controller()
     );
   });
