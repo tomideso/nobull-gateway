@@ -42,7 +42,7 @@ export default () => {
 
   router.get("/whoami", checkUser, async (req, res, next) => {
 
-    res.send(res.locals.user)
+    res.send(res.locals?.user?.user)
 
   });
 

@@ -4,6 +4,7 @@ import { InvoiceService } from "./InvoiceService";
 import TYPES from "@/config/types";
 import { SubscriptionService } from "./SubscriptionService";
 import { PaymentPlanService } from "./PaymentPlanService";
+import Account from "@/entity/Account";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST)
 
 @injectable()
@@ -26,6 +27,8 @@ export class PaymentServiceImpl implements PaymentService {
     public async pay({ userId, productId, plan, description, amount, paymentMethod: payment_method }) {
 
         try {
+
+            const user = await Account.findOne({ userId });
 
             const { monthlyCost, flatCost } = await this.paymentPlanService.getByProductID(productId);
             // get amount from product plan
@@ -51,8 +54,10 @@ export class PaymentServiceImpl implements PaymentService {
                 confirm: true
             })
 
-            await this.invoiceService.create({ account: userId, product: productId, description, amount });
-            await this.subscriptionService.create({ account: userId, product: productId, paymentRef, active: true });
+            await this.invoiceService.create({ account: user._id, product: productId, description, amount });
+            const sub = await this.subscriptionService.create({ account: user._id, product: productId, paymentRef, active: true });
+            await Account.findByIdAndUpdate(user._id, { $addToSet: { subscription: sub._id } })
+
 
             return {
                 message: "Payment successful",

@@ -48,8 +48,8 @@ export class SubscriptionServiceImpl implements SubscriptionService {
 
     public async getAllByUser(userId) {
         try {
-            const config = await SubscriptionSchema.find({ account: userId }).lean();
-            return await config;
+            const config = await SubscriptionSchema.find({ "account.userId": userId }).lean();
+            return config;
         } catch (error) {
             throw new AppError("Error finding Payment Plans", 400);
         }

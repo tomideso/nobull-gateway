@@ -20,8 +20,12 @@ export class AccountServiceImpl implements AccountService {
     // this.accountRepo = accountRepo;
   }
 
-  public async getUserById(id: string) { }
-  public async getUserByUserId(id: string) { }
+  public async getUserById(id) {
+    return Account.findById(id).lean()
+  }
+  public async getUserByUserId(userId) {
+    return Account.findOne({ userId }).lean()
+  }
   public async getbyUserAndUpdate(cond, update) {
     return Account.findOneAndUpdate(cond, update, { new: true });
   }
