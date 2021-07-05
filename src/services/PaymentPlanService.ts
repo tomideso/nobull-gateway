@@ -15,11 +15,11 @@ export class PaymentPlanServiceImpl implements PaymentPlanService {
     this.invoiceService = invoiceService;
   }
 
-  public async create({ trialCost, trialPeriod, monthlyCost, yearlyCost, flatCost, product }) {
+  public async create({ trialCost, name, trialPeriod, monthlyCost, yearlyCost, flatCost, product }) {
 
     try {
       const configuration = new PaymentPlanSchema();
-      Object.assign(configuration, { trialCost, trialPeriod, monthlyCost, yearlyCost, flatCost, product });
+      Object.assign(configuration, { trialCost, name, trialPeriod, monthlyCost, yearlyCost, flatCost, product });
 
       return await configuration.save();
     } catch (error) {

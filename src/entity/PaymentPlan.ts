@@ -7,8 +7,8 @@ const PaymentPlanSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Product",
         required: true,
-        unique: true
     },
+    name: String,
     trialPeriod: { type: Number, default: 0 },
     trialCost: { type: Number, default: 0 },
     monthlyCost: { type: Number, default: 0 },
