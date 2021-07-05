@@ -14,7 +14,8 @@ export default () => {
         "/init",
         async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const payment = await PaymentService.pay(req.body);
+                const session = res.locals.user;
+                const payment = await PaymentService.pay({ ...req.body, userId: session?.user?.id });
 
                 res.json({
                     message: "Payment successful",

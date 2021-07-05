@@ -25,10 +25,7 @@ const publicRoutes = [
     route: "/config",
     controller: ConfigurationController,
   },
-  {
-    route: "/payment",
-    controller: PaymentController,
-  },
+
   {
     route: "/payment-plan",
     controller: PaymentPlanController,
@@ -51,6 +48,10 @@ const privateRoutes = [
   {
     route: "/user",
     controller: UserController,
+  },
+  {
+    route: "/payment",
+    controller: PaymentController,
   },
   {
     route: "/account",
