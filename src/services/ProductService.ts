@@ -44,7 +44,7 @@ export class ProductServiceImpl implements ProductService {
     public async getByID(id) {
         try {
             const product = await ProductSchema.findById(id).lean();
-            return await product;
+            return product;
         } catch (error) {
             throw new AppError("Error finding product", 400);
         }
@@ -53,7 +53,7 @@ export class ProductServiceImpl implements ProductService {
     public async getAll() {
         try {
             const products = await ProductSchema.find().lean();
-            return await products;
+            return products;
         } catch (error) {
             throw new AppError("Error finding products", 400);
         }

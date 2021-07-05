@@ -1,5 +1,5 @@
 import Account from "../entity/Account";
-import AccountRepository from "../Repository/AccountRepository";
+// import AccountRepository from "../Repository/AccountRepository";
 import { injectable, inject } from "inversify";
 import TYPES from "../config/types";
 import { Redis } from "ioredis";
@@ -8,7 +8,7 @@ import { CustomResponse } from "@/ErrorHandler/CustomResponse";
 
 @injectable()
 export class AccountServiceImpl implements AccountService {
-  private accountRepo: AccountRepository;
+  // private accountRepo: AccountRepository;
 
   private redisClient: Redis;
 
@@ -17,12 +17,18 @@ export class AccountServiceImpl implements AccountService {
     @inject(TYPES.AccountRepo) accountRepo
   ) {
     this.redisClient = redisClient;
-    this.accountRepo = accountRepo;
+    // this.accountRepo = accountRepo;
   }
 
-  public async getUser(id: string) {}
+  public async getUserById(id: string) { }
+  public async getUserByUserId(id: string) { }
+  public async getbyUserAndUpdate(cond, update) {
+    return Account.findOneAndUpdate(cond, update, { new: true });
+  }
 }
 
 export interface AccountService {
-  getUser(userId);
+  getUserById(userId: string);
+  getUserByUserId(userId: string);
+  getbyUserAndUpdate(cond, update)
 }
