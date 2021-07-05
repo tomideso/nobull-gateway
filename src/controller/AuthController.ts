@@ -40,7 +40,7 @@ export default () => {
 
   });
 
-  router.post("/whoami", checkUser, async (req, res, next) => {
+  router.get("/whoami", checkUser, async (req, res, next) => {
 
     res.send(res.locals.user)
 
