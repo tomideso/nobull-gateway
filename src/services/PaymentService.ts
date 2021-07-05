@@ -54,10 +54,10 @@ export class PaymentServiceImpl implements PaymentService {
                 confirm: true
             })
 
-            await this.invoiceService.create({ account: user._id, product: productId, description, amount });
+            // await this.invoiceService.create({ account: user._id, product: productId, description, amount });
 
-            const sub = await this.subscriptionService.create({ account: user._id, product: productId, paymentRef, active: true });
-            await Account.findByIdAndUpdate(user._id, { $addToSet: { subscription: sub._id } })
+            // const sub = await this.subscriptionService.create({ account: user._id, product: productId, paymentRef, active: true });
+            // await Account.findByIdAndUpdate(user._id, { $addToSet: { subscription: sub._id } })
 
 
             return {
