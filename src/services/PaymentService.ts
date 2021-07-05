@@ -28,7 +28,7 @@ export class PaymentServiceImpl implements PaymentService {
 
         try {
 
-            const user = await Account.findOne({ userId });
+            // const user = await Account.findOne({ userId });
 
             const { monthlyCost, flatCost } = await this.paymentPlanService.getByProductID(productId);
             // get amount from product plan
