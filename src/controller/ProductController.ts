@@ -13,9 +13,9 @@ export default () => {
   router.post(
     "/create",
     async (req: Request, res: Response, next: NextFunction) => {
-      const { name, description, recurring, url } = req.body;
+      const { name, description, recurring, url, paid } = req.body;
       try {
-        const configuration = await ProductService.create({ name, description, recurring, url });
+        const configuration = await ProductService.create({ name, description, recurring, url, paid });
         res.send(configuration);
       } catch (error) {
         const err = new AppError("Error Creating Product", 400);
