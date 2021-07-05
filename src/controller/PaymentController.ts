@@ -5,9 +5,11 @@ import container from "../container/inversify.config";
 import { AppError } from "@/ErrorHandler/AppError";
 
 export default () => {
+
     const PaymentService = container.get<PaymentServiceImpl>(
-        TYPES.PaymentPlanService
+        TYPES.PaymentService
     );
+
     const router = Router();
 
     router.post(
