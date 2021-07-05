@@ -13,7 +13,7 @@ export default () => {
 
   // router.post("/login", Login);
 
-  router.post("/authorized", async (req: Request, res: Response, next: NextFunction) => {
+  router.post("/authorize", async (req: Request, res: Response, next: NextFunction) => {
 
     const { userCode, email } = req.body;
 
