@@ -15,6 +15,7 @@ import * as mongoose from "mongoose";
 const connectRedis = require("connect-redis");
 const path = require("path");
 const expressip = require("express-ip");
+const cookieParser = require("cookie-parser");
 
 // const mongoose = require("mongoose");
 (<any>mongoose).Promise = global.Promise;
@@ -49,7 +50,7 @@ mongoose.connect(DB_CONFIG.mongoUrl, { useNewUrlParser: true }, (error) => {
   // Call midlewares
   app.use(cors());
   app.use(helmet());
-
+  app.use(cookieParser())
   app.use(
     session({
       cookie: {
