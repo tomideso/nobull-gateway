@@ -48,9 +48,9 @@ mongoose.connect(DB_CONFIG.mongoUrl, { useNewUrlParser: true }, (error) => {
   app.set("views", path.join(__dirname, "views"));
 
   // Call midlewares
-  app.use(cors());
+  // app.use(cors());
   app.use(helmet());
-  app.use(cookieParser())
+  app.use(cookieParser());
   app.use(
     session({
       cookie: {
