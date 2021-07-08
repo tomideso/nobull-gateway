@@ -46,9 +46,15 @@ mongoose.connect(DB_CONFIG.mongoUrl, { useNewUrlParser: true }, (error) => {
   app.engine("hbs", expressHandleBars.engine);
   app.set("view engine", "hbs");
   app.set("views", path.join(__dirname, "views"));
+  const corsOptions = {
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  };
 
   // Call midlewares
-  // app.use(cors());
+  app.use(cors(corsOptions));
   app.use(helmet());
   app.use(cookieParser());
   app.use(

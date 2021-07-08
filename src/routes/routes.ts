@@ -11,7 +11,7 @@ import ProductController from "@/controller/ProductController";
 import SubscriptionController from "@/controller/SubscriptionController";
 import InvoiceController from "@/controller/InvoiceController";
 import { checkUser } from "@/middleware/checkUser";
-const Cors = require("cors");
+// const Cors = require("cors");
 
 const publicRoutes = [
   {
@@ -70,12 +70,5 @@ export const registerRoutes = (app: Application): void => {
     routesV1.use(route, checkUser, controller());
   });
 
-  const corsOptions = {
-    origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  };
-
-  app.use("/v1", Cors(corsOptions), routesV1);
+  app.use("/v1", routesV1);
 };
