@@ -1,7 +1,7 @@
 {
-    "watch": ["src"],
-    "ignore": ["src/**/*.test.ts"],
-    "ext": "ts,js,json",
-    "exec": "ts-node -r dotenv/config -r tsconfig-paths/register ./src/index.ts",
-    "legacyWatch": true
-  }
+  "watch": ["src"],
+  "ignore": ["src/**/*.test.ts"],
+  "ext": "ts,js,json",
+  "exec": "cross-env ts-node -r dotenv/config -r tsconfig-paths/register ./src/index.ts",
+  "legacyWatch": true
+}

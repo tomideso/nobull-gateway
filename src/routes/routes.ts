@@ -67,11 +67,7 @@ export const registerRoutes = (app: Application): void => {
   });
 
   privateRoutes.map(({ route, controller }) => {
-    routesV1.use(
-      route,
-      checkUser,
-      controller()
-    );
+    routesV1.use(route, checkUser, controller());
   });
 
   const corsOptions = {
