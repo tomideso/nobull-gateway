@@ -8,30 +8,36 @@ import TYPES from "@/config/types";
 import { UserService, UserServiceImpl } from "./UserService";
 import { CustomResponse } from "@/ErrorHandler/CustomResponse";
 import HttpClient from "./HttpClient";
-import Axios, { AxiosInstance, AxiosResponse } from 'axios';
-
+import Axios, { AxiosInstance, AxiosResponse } from "axios";
 
 const RequestHandler = Axios.create({
   baseURL: process.env.SSO_BASE_URL,
   timeout: 5000,
   headers: { "Content-Type": "application/json" },
-})
+});
 
-
-
-export const getAccessTokenFromAuthCode = async ({ userCode, email }): Promise<authResponse> => {
+export const getAccessTokenFromAuthCode = async ({
+  userCode,
+  email,
+}): Promise<authResponse> => {
   try {
-    const { token, user } = await RequestHandler.post<authResponse>('/auth/authorize', { userCode, email })
-      .then(({ data }) => data)
+    const { token, user } = await RequestHandler.post<authResponse>(
+      "/auth/authorize",
+      { userCode, email }
+    ).then(({ data }) => data);
 
     //Todo
     //add all free products to user subscription
 
-    await Account.findOneAndUpdate({ userId: user.id }, { userId: user.id }, { upsert: true });
+    await Account.findOneAndUpdate(
+      { userId: user.id },
+      { userId: user.id },
+      { upsert: true }
+    );
 
     return { token, user };
-
   } catch (e) {
+    console.log(e);
     throw new AppError("Error getting Access token", 401);
   }
 };
@@ -45,29 +51,27 @@ export const getAccessTokenInfo = async (access_token): Promise<string> => {
   }
 };
 
-
 interface authResponse {
-  user: ssoUser
-  token: access_token
+  user: ssoUser;
+  token: access_token;
 }
 
 interface ssoUser {
-  status: string
-  _id: string,
-  __v: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  userCode: string,
-  confirmationCode: string,
-  refreshToken: string,
-  fullName: string,
-  id: string
+  status: string;
+  _id: string;
+  __v: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  userCode: string;
+  confirmationCode: string;
+  refreshToken: string;
+  fullName: string;
+  id: string;
 }
 
 interface access_token {
-  expiresIn: number
-  token: string
-  refreshToken: string
+  expiresIn: number;
+  token: string;
+  refreshToken: string;
 }
-
