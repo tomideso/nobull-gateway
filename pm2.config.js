@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "nobull-filterapi",
+      name: "nobull-gateway",
       script: "dist/index.js",
       node_args: "-r dotenv/config",
       // instances  : 4,
