@@ -22,7 +22,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
 const RedisStore = connectRedis(session);
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8001;
 
 const expressHandleBars = require("express-handlebars").create({
   defaultLayout: "layout",

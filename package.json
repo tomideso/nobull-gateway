@@ -4,7 +4,7 @@
   "description": "NoBull filter",
   "author": "Olatomide",
   "scripts": {
-    "dev": "set debug=* && cross-env ts-node-dev -r dotenv/config -r tsconfig-paths/register --respawn  ./src/index.ts",
+    "dev": "set debug=* && ts-node-dev -r dotenv/config -r tsconfig-paths/register --respawn  ./src/index.ts",
     "build": "gulp",
     "start": "npm i && npm run build && NODE_ENV=production pm2 start pm2.config.js",
     "dev:gulp": "nodemon --watch ./src -e 'ts' --exec \"gulp dev:build && node -r dotenv/config dist/index.js\"",

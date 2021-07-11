@@ -17,13 +17,13 @@ const RequestHandler = Axios.create({
 });
 
 export const getAccessTokenFromAuthCode = async ({
-  userCode,
+  userCode: code,
   email,
 }): Promise<authResponse> => {
   try {
     const { token, user } = await RequestHandler.post<authResponse>(
       "/auth/authorize",
-      { userCode, email }
+      { code, email }
     ).then(({ data }) => data);
 
     //Todo
@@ -37,7 +37,6 @@ export const getAccessTokenFromAuthCode = async ({
 
     return { token, user };
   } catch (e) {
-    console.log(e);
     throw new AppError("Error getting Access token", 401);
   }
 };
